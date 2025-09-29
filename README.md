@@ -1,2 +1,341 @@
 # skullsmoke.github.io
-github page
+<!DOCTYPE html> 
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Sangu-Chería Nacional</title>
+<style>
+*{box-sizing:border-box;}
+body{margin:0;font-family:"Segoe UI",Roboto,Arial,sans-serif;background:#fafafa;color:#333;}
+h1,h2,h3{margin:0 0 .5em;}
+/* --- HEADER --- */
+.header{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1rem 2rem;background:linear-gradient(90deg,#d12727,#a61212);
+  color:#fff;position:sticky;top:0;z-index:1000;
+}
+.logo{font-size:1.8rem;font-weight:700;}
+.nav a{margin:0 1rem;text-decoration:none;color:#fff;font-weight:600;}
+.nav a:hover{color:#ffc107;}
+.cart-btn{
+  background:#ffc107;color:#333;border:none;
+  padding:.6rem 1rem;border-radius:6px;cursor:pointer;font-weight:700;
+  position:relative;
+}
+.cart-count{
+  position:absolute;top:-8px;right:-8px;
+  background:#d12727;color:#fff;border-radius:50%;
+  width:22px;height:22px;display:flex;align-items:center;
+  justify-content:center;font-size:.8rem;font-weight:bold;
+}
+/* --- HERO --- */
+.hero{
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  text-align:center;min-height:60vh;
+  background:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),
+  url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=1600') center/cover;
+  color:#fff;padding:2rem;
+}
+.hero h1{font-size:3rem;}
+.btn{display:inline-block;padding:.7rem 1.2rem;border-radius:8px;
+  font-weight:bold;text-decoration:none;border:none;cursor:pointer;}
+.btn-primary{background:#ffc107;color:#333;}
+.btn-secondary{background:#d12727;color:#fff;}
+.btn:hover{filter:brightness(1.1);}
+/* --- SECTIONS --- */
+.section{padding:3rem 1rem;text-align:center;}
+.section-title{font-size:2rem;color:#d12727;margin-bottom:2rem;}
+.menu-grid{
+  display:grid;gap:2rem;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+}
+.card{
+  background:#fff;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,.1);
+  overflow:hidden;text-align:left;
+}
+.card img{width:100%;height:200px;object-fit:cover;}
+.card-content{padding:1rem;}
+.price{color:#d12727;font-weight:700;font-size:1.2rem;margin:.5rem 0;}
+/* --- VALUE PROPS --- */
+.value-props{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:2rem;
+}
+.prop{
+  flex:1 1 260px;
+  background:#fff;
+  border-radius:12px;
+  padding:1.5rem;
+  box-shadow:0 4px 10px rgba(0,0,0,.1);
+  transition:transform .3s;
+}
+.prop:hover{transform:translateY(-6px);}
+.prop-icon{font-size:2.5rem;margin-bottom:.5rem;}
+/* --- GALLERY --- */
+.gallery-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:18px;padding:0 1rem;
+}
+.gallery-grid img{width:100%;height:200px;object-fit:cover;border-radius:12px;}
+/* --- CONTACTO --- */
+.contacto{
+  background:#fff;
+  text-align:center;
+  padding:2rem 1rem;
+}
+.contacto h3{
+  color:#d12727;
+  margin-bottom:1rem;
+}
+.contact-icons{
+  display:flex;
+  justify-content:center;
+  gap:2rem;
+  flex-wrap:wrap;
+}
+.contact-icons a{
+  display:flex;
+  align-items:center;
+  gap:.5rem;
+  text-decoration:none;
+  color:#333;
+  font-weight:600;
+  background:#f7f7f7;
+  padding:.6rem 1rem;
+  border-radius:8px;
+  transition:background .3s;
+  font-size:1rem;
+}
+.contact-icons a:hover{background:#ffc107;}
+.contact-icons img{
+  width:24px;
+  height:24px;
+}
+/* --- FOOTER --- */
+.footer{background:#222;color:#eee;text-align:center;padding:2rem;}
+.footer a{color:#ffc107;text-decoration:none;}
+/* --- CART MODAL --- */
+.cart-modal{
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;
+  z-index:2000;
+}
+.cart-content{
+  background:#fff;width:90%;max-width:400px;border-radius:12px;
+  padding:1.5rem;max-height:80vh;overflow-y:auto;
+}
+.cart-content h3{text-align:center;margin-bottom:1rem;}
+.cart-item{display:flex;justify-content:space-between;align-items:center;margin-bottom:.8rem;}
+.cart-item span{font-size:.95rem;}
+.cart-total{font-weight:bold;margin-top:1rem;}
+.cart-actions{margin-top:1rem;display:flex;justify-content:space-between;}
+/* --- RESPONSIVE --- */
+@media(max-width:600px){
+  .hero h1{font-size:2rem;}
+  .section-title{font-size:1.6rem;}
+  .contact-icons a{font-size:.9rem;padding:.5rem .8rem;}
+  .contact-icons img{width:20px;height:20px;}
+}
+/* ===== ANIMACIÓN GLOBAL PARA TODAS LAS SECCIONES ===== */
+.section, .hero, .contacto, .gallery-grid img, .card {
+  transition: transform .3s, box-shadow .3s;
+}
+
+.section:hover,
+.hero:hover,
+.contacto:hover,
+.gallery-grid img:hover,
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="logo">La Sangu-Chería Nacional</div>
+  <nav class="nav">
+    <a href="#menu">Menú</a>
+    <a href="#porque">¿Por qué elegirnos?</a>
+    <a href="#galeria">Galería</a>
+  </nav>
+  <button class="cart-btn" id="openCart">🛒 Carrito
+    <div class="cart-count" id="cartCount">0</div>
+  </button>
+</header>
+
+<main>
+  <section class="hero">
+    <h1>¿Antojo de un clásico?</h1>
+    <p>Los mejores sándwiches chilenos, con la marraqueta más crujiente.</p>
+    <a href="#menu" class="btn btn-primary">Ver Menú</a>
+  </section>
+
+  <!-- MENÚ -->
+  <section id="menu" class="section">
+    <h2 class="section-title">Nuestros Sánguches Estrella</h2>
+    <div class="menu-grid">
+      <article class="card" data-name="Chacarero" data-price="7990">
+        <img src="https://www.gourmet.cl/wp-content/uploads/2019/04/Chacarero-edit.jpg">
+        <div class="card-content">
+          <h3>El Chacarero</h3>
+          <p>Churrasco, porotos verdes, tomate y ají verde en marraqueta.</p>
+          <div class="price">$7.990</div>
+          <button class="btn btn-secondary add-cart">Agregar al Carrito</button>
+        </div>
+      </article>
+      <article class="card" data-name="Barros Luco" data-price="7490">
+        <img src="https://www.fmdos.cl/wp-content/uploads/2020/06/0449b17b7d79d90a1c6987cdc9ffb5dc.jpg">
+        <div class="card-content">
+          <h3>Barros Luco</h3>
+          <p>Carne a la plancha y queso caliente derretido.</p>
+          <div class="price">$7.490</div>
+          <button class="btn btn-secondary add-cart">Agregar al Carrito</button>
+        </div>
+      </article>
+      <article class="card" data-name="Lomito Italiano" data-price="8290">
+        <img src="https://s.13.cl/sites/default/files/styles/manualcrop_850x475/public/13c/articulos/field-imagen/2023-08/Lomito%20chileno.jpg.jpeg">
+        <div class="card-content">
+          <h3>Lomito Italiano</h3>
+          <p>Lomo de cerdo, palta, tomate y mayonesa casera.</p>
+          <div class="price">$8.290</div>
+          <button class="btn btn-secondary add-cart">Agregar al Carrito</button>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- NUEVA SECCIÓN: POR QUÉ ELEGIRNOS -->
+  <section id="porque" class="section">
+    <h2 class="section-title">¿Por qué elegirnos?</h2>
+    <div class="value-props">
+      <div class="prop">
+        <div class="prop-icon">🥖</div>
+        <h3>Marraqueta Siempre Fresca</h3>
+        <p>Horneamos dos veces al día para que siempre disfrutes un pan crujiente.</p>
+      </div>
+      <div class="prop">
+        <div class="prop-icon">🍅</div>
+        <h3>Ingredientes Locales</h3>
+        <p>Apoyamos a productores chilenos y usamos solo productos de primera calidad.</p>
+      </div>
+      <div class="prop">
+        <div class="prop-icon">⚡</div>
+        <h3>Entrega Rápida</h3>
+        <p>Despachos express para que tu sánguche llegue caliente a tu puerta.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERÍA -->
+  <section id="galeria" class="section">
+    <h2 class="section-title">Galería de Antojos</h2>
+    <div class="gallery-grid">
+      <img src="https://recetasdecocina.elmundo.es/wp-content/uploads/2023/11/sandwich-de-pollo.jpg">
+      <img src="https://editorialtelevisa.brightspotcdn.com/a1/91/54ede86c4a7c89ee98f239261143/sandwich-saludable-para-lunch.jpeg">
+      <img src="https://enlacocina.telemesa.es/wp-content/uploads/2018/07/bebidas-refrescantes-992x640.jpg">
+      <img src="https://www.shutterstock.com/image-photo/double-cool-ice-soft-drink-600nw-647315608.jpg">
+    </div>
+  </section>
+</main>
+
+<!-- NUEVO APARTADO DE CONTACTO -->
+<section class="contacto">
+  <h3>Contáctanos</h3>
+  <div class="contact-icons">
+    <a href="https://wa.me/56912345678" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+      WhatsApp
+    </a>
+    <a href="https://instagram.com/lasangucheria" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram">
+      Instagram
+    </a>
+  </div>
+</section>
+
+<footer class="footer">
+  <p>&copy; 2025 La Sangu-Chería Nacional</p>
+</footer>
+
+<!-- CART MODAL -->
+<div class="cart-modal" id="cartModal">
+  <div class="cart-content">
+    <h3>🛒 Tu Carrito</h3>
+    <div id="cartItems"></div>
+    <div class="cart-total" id="cartTotal">Total: $0</div>
+    <div class="cart-actions">
+      <button class="btn btn-secondary" id="clearCart">Vaciar</button>
+      <button class="btn btn-primary" id="closeCart">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const cartBtn = document.getElementById('openCart');
+const cartModal = document.getElementById('cartModal');
+const cartItemsDiv = document.getElementById('cartItems');
+const cartTotal = document.getElementById('cartTotal');
+const cartCount = document.getElementById('cartCount');
+const clearCartBtn = document.getElementById('clearCart');
+const closeCartBtn = document.getElementById('closeCart');
+
+let cart = [];
+
+function updateCart(){
+  cartItemsDiv.innerHTML = '';
+  let total = 0;
+  cart.forEach((item,index)=>{
+    total += item.price * item.qty;
+    const div = document.createElement('div');
+    div.className='cart-item';
+    div.innerHTML = `<span>${item.name} x${item.qty}</span>
+    <span>$${(item.price*item.qty).toLocaleString()}</span>
+    <button style="background:none;border:none;color:red;cursor:pointer;" onclick="removeItem(${index})">✖</button>`;
+    cartItemsDiv.appendChild(div);
+  });
+  cartTotal.textContent = 'Total: $' + total.toLocaleString();
+  cartCount.textContent = cart.reduce((a,b)=>a+b.qty,0);
+}
+
+function addToCart(name,price){
+  const found = cart.find(i=>i.name===name);
+  if(found){found.qty++;}
+  else{cart.push({name,price,qty:1});}
+  updateCart();
+}
+
+function removeItem(i){cart.splice(i,1);updateCart();}
+
+document.querySelectorAll('.add-cart').forEach(btn=>{
+  btn.addEventListener('click',e=>{
+    const card = e.target.closest('.card');
+    addToCart(card.dataset.name, parseInt(card.dataset.price));
+  });
+});
+
+cartBtn.onclick = ()=> cartModal.style.display='flex';
+closeCartBtn.onclick = ()=> cartModal.style.display='none';
+clearCartBtn.onclick = ()=> {cart=[];updateCart();};
+window.removeItem = removeItem;
+</script> <footer class="footer">
+  
+
+  
+  <div style="margin-top:1rem;">
+    <p style="margin:.4rem 0;font-size:1rem;">📞 Teléfono: <a href="tel:+56912345678" style="color:#ffc107;">+56 9 1234 5678</a></p>
+    <p style="margin:.4rem 0;font-size:1rem;">📞 Teléfono: <a href="tel:+56987654321" style="color:#ffc107;">+56 9 8765 4321</a></p>
+    <p style="margin:.4rem 0;font-size:1rem;">
+      💬 WhatsApp: 
+      <a href="https://wa.me/56912345678" target="_blank" style="color:#ffc107;">+56 9 1234 5678</a>
+    </p>
+    <p style="margin:.4rem 0;font-size:1rem;">
+      📷 Instagram:
+      <a href="https://instagram.com/lasangucheria" target="_blank" style="color:#ffc107;">@lasangucheria</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
